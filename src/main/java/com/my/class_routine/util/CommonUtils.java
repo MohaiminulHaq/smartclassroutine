@@ -4,8 +4,10 @@ import com.my.class_routine.controller.CommonResponse;
 import com.my.class_routine.model.AppUser;
 import com.my.class_routine.model.BaseEntity;
 import com.my.class_routine.repository.AppUserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.text.DateFormat;
@@ -16,7 +18,10 @@ import java.util.Random;
 
 import static com.my.class_routine.util.MessageConstants.*;
 
-public class CommonUtils {
+@Component
+@AllArgsConstructor
+public class CommonUtils implements MessageConstants{
+
 
     private AppUserRepository appUserRepo;
 
@@ -148,11 +153,7 @@ public class CommonUtils {
         return prefix.concat(padding);
     }
 
-//    public MenuItem getCommonModule() {
-//        MenuItem module = new MenuItem();
-//        module.setId(308);
-//        return module;
-//    }
+
 
     //================================== *** ==================================
     //									Date Helper

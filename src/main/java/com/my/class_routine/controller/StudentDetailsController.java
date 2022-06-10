@@ -4,29 +4,30 @@ import com.my.class_routine.model.StudentDetails;
 import com.my.class_routine.service.StudentService;
 import com.my.class_routine.util.CommonUtils;
 import lombok.AllArgsConstructor;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
+import static com.my.class_routine.util.ApiConstants.*;
 import static com.my.class_routine.util.MessageConstants.*;
 
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("teeth-info")
+@RequestMapping("/api/v1/")
 public class StudentDetailsController {
 
-    @SuppressWarnings("unused")
-    private static final Logger LOG = LoggerFactory.getLogger(StudentDetails.class);
+    private final CommonUtils commonUtils;
+
+
     private final StudentService service;
 
     /* utils */
-    private final CommonUtils commonUtils;
+
    // private final UserTokenRequestUtils authTokenUtils;
 
     @PostMapping
-    public CommonResponse save(@Valid @RequestBody StudentDetails body, HttpServletRequest request){
+    public CommonResponse save(@RequestBody StudentDetails body, HttpServletRequest request){
         try {
 //            body.setEntryUser(authTokenUtils.getUserIdFromRequest(request));
             return commonUtils.generateSuccessResponse(service.save(body), SAVE_MESSAGE, SAVE_MESSAGE_BN);
@@ -36,7 +37,7 @@ public class StudentDetailsController {
     }
 
     @PutMapping
-    public CommonResponse update(@Valid @RequestBody StudentDetails body, HttpServletRequest request){
+    public CommonResponse update(@RequestBody StudentDetails body, HttpServletRequest request){
         try {
            // body.setUpdateUser(authTokenUtils.getUserIdFromRequest(request));
             return commonUtils.generateSuccessResponse(service.update(body), UPDATE_MESSAGE, UPDATE_MESSAGE_BN);
@@ -46,7 +47,7 @@ public class StudentDetailsController {
     }
 
     @DeleteMapping
-    public CommonResponse delete(@Valid @RequestBody StudentDetails body){
+    public CommonResponse delete(@RequestBody StudentDetails body){
         try {
             return commonUtils.generateSuccessResponse(service.delete(body), DELETE_MESSAGE, DELETE_MESSAGE_BN);
         } catch (Exception e) {

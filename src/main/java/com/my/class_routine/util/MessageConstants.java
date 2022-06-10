@@ -27,4 +27,4 @@ public interface MessageConstants {
     String CIRCULATE_MESSAGE = "Successfully Circulate the Message and Notification";
     String CIRCULATE_MESSAGE_BN = "সফলভাবে বার্তা এবং বিজ্ঞপ্তি প্রচার করা হয়েছে।";
 }
-}
+
